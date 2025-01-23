@@ -82,8 +82,7 @@ void Node::postOrder( Node* root ) {
     std::cout << root->data << " ";
 }
 
-std::vector<std::vector <int >> Node::
-levelOrder( Node* root ) {
+std::vector <std::vector <int >> Node::levelOrder( Node* root ) {
     std::vector< std::vector < int >> treeElements;
 
     if ( root == nullptr ) {
@@ -152,5 +151,96 @@ bool Node::isBalanced( Node* root ) {
     } else if ( abs( leftHeight - rightHeight ) <= 1 ) {
         return true;
     }
+}
 
+int Node::treeDiameter( Node* root ) {
+    if ( root == nullptr ) {
+        return 0;
+    }
+
+    int left = heightOfTree( root->left );
+    int right = heightOfTree( root->right );
+    int sum = left + right;
+    diameter = max( diameter, sum );
+    return max( left, right )+1;
+}
+
+int Node::getDiameter() {
+    return diameter;
+}
+
+std::vector <int> Node::leftViewOfTree( Node* root ) {
+    if ( root == nullptr ) {
+        return {};
+    }
+
+    std::vector <std::vector <int>> treeElements = levelOrder( root );
+
+    std::vector <int> leftViewElements;
+
+    for ( int i = 0; i < treeElements[ i ].size(); i++ ) {
+        for ( int j = 0; j < treeElements[ i ].size(); j++ ) {
+            if ( j == 0 ) {
+                leftViewElements.push_back( treeElements[ i ][ j ] );
+            }
+        }
+    }
+
+    return leftViewElements;
+}
+
+std::vector <int> Node::rightViewOfTree( Node* root ) {
+    if ( root == nullptr ) {
+        return {};
+    }
+
+    std::vector <std::vector <int>> treeElements = levelOrder( root );
+
+    std::vector <int> rightViewElements;
+
+    for ( int i = 0; i < treeElements.size(); i++ ) {
+        for (int j = 0; j < treeElements[ i ].size(); j++) {
+            if ( j == treeElements[ i ].size() - 1 ) {
+                rightViewElements.push_back( treeElements[ i ][ j ] );
+            }
+        }
+    }
+
+    return rightViewElements;
+}
+
+bool Node::areBothTreesSame( Node* p, Node* q ) {
+    
+    // if both are nullptr
+    if ( p == nullptr && q == nullptr ) {
+        return true;
+    }
+
+    // if either is nullptr and other is not
+    if ( p == nullptr || q == nullptr ) {
+        return false;
+    }
+
+    // if p->data and q->data are same then check their subtrees recursively
+    if ( p->data == q->data ) {
+        return ( areBothTreesSame( p->left, q->left ) && 
+                areBothTreesSame( p->right, q->right ));
+    }
+
+    // if p->data and q->data are not same then return false
+    return false;
+}
+
+std::vector < std::vector <int>> Node::zigzagLevelOrder( Node* root ) {
+
+    std::vector < std::vector <int>> zigzagElements = levelOrder( root );
+
+
+    for ( int i = 0; i < zigzagElements.size(); i++ ) {
+        if ( i % 2 != 0 ) {
+            reverse( zigzagElements[ i ].begin(), zigzagElements[ i ].end());
+        }
+    }
+
+    return zigzagElements;
 }

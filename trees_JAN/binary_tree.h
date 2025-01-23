@@ -33,7 +33,21 @@ public:
 
     int heightOfTree( Node* root );
 
-    bool isBalanced( Node* root ); 
+    bool isBalanced( Node* root );
+
+    int treeDiameter( Node* root );
+    int getDiameter();
+
+    std::vector <int> leftViewOfTree( Node* root );
+
+    std::vector <int> rightViewOfTree( Node* root );
+
+    bool areBothTreesSame( Node* p, Node* q );
+
+    std::vector < vector <int>> zigzagLevelOrder( Node* root );
+
+private:
+    int diameter = 0; //required for tree diameter
 
 };
 

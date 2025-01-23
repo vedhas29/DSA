@@ -36,5 +36,12 @@ int main() {
     std::cout << "\nprinting level-order traversal = ";
     n->printLevelOrder( treeElements );
 
+    //to find tree diameter
+    int leftSubTree = n->heightOfTree( n->left );
+    int rightSubTree = n->heightOfTree( n->right );
+    int sumOfHeights = ( leftSubTree + rightSubTree );
+    std::cout << "Diameter of tree is = " << max( sumOfHeights, n->getDiameter());
+    
+
     return 0;
 }
