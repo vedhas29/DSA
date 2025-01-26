@@ -49,6 +49,8 @@ public:
     void FlattenBT2LL( Node* root );
     void preOrder2StoreElements( Node* root, std::vector <int>& elements );
 
+    void createMirror( Node* root );
+
 private:
     int diameter = 0; //required for tree diameter
 

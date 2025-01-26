@@ -276,3 +276,13 @@ void Node::preOrder2StoreElements( Node* root, std::vector <int>& elements ) {
     preOrder2StoreElements( root->right, elements );
 }
 
+void Node::createMirror( Node* root ) {
+
+    if ( root == nullptr ) {
+        return;
+    }
+
+    swap( root->left, root->right );
+    createMirror( root->left );
+    createMirror( root->right );
+}
