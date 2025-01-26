@@ -46,6 +46,9 @@ public:
 
     std::vector < vector <int>> zigzagLevelOrder( Node* root );
 
+    void FlattenBT2LL( Node* root );
+    void preOrder2StoreElements( Node* root, std::vector <int>& elements );
+
 private:
     int diameter = 0; //required for tree diameter
 

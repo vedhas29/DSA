@@ -244,3 +244,35 @@ std::vector < std::vector <int>> Node::zigzagLevelOrder( Node* root ) {
 
     return zigzagElements;
 }
+
+void Node::FlattenBT2LL( Node* root ) {
+
+    if ( root == nullptr ) {
+        return;
+    }
+
+    std::vector <int> elements;
+    preOrder2StoreElements( root, elements );
+
+    root->left = nullptr;
+    Node* temp = root;
+
+    for ( int i = 1; i < elements.size(); i++ ) {
+        Node* newNode = createNode( root->data );
+        temp->right = newNode;
+        temp = newNode; 
+    }
+
+}
+
+void Node::preOrder2StoreElements( Node* root, std::vector <int>& elements ) {
+    
+    if ( root == nullptr ) {
+        return;
+    }
+
+    elements.push_back( root->data );
+    preOrder2StoreElements( root->left, elements );
+    preOrder2StoreElements( root->right, elements );
+}
+
