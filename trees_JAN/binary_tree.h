@@ -51,6 +51,8 @@ public:
 
     void createMirror( Node* root );
 
+    Node* searchInBST( Node* root, int key );
+
 private:
     int diameter = 0; //required for tree diameter
 

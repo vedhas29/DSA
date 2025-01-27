@@ -286,3 +286,32 @@ void Node::createMirror( Node* root ) {
     createMirror( root->left );
     createMirror( root->right );
 }
+
+Node* Node::searchInBST( Node* root, int key ) {
+
+    if ( root == nullptr ) {
+        return nullptr;
+    }
+
+    std::queue <Node*> q;
+    q.push( root );
+
+    while ( !q.empty()) {
+        Node* element = q.front();
+        q.pop();
+
+        if ( element->left != nullptr ) {
+            q.push( element->left );
+        }
+
+        if ( element->right != nullptr ) {
+            q.push( element->right );
+        }
+
+        if ( element->val == key ) {
+            return element;
+        }
+    }
+
+    return nullptr;
+}
