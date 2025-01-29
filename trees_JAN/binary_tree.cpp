@@ -308,10 +308,75 @@ Node* Node::searchInBST( Node* root, int key ) {
             q.push( element->right );
         }
 
-        if ( element->val == key ) {
+        if ( element->data == key ) {
             return element;
         }
     }
 
     return nullptr;
 }
+
+Node* createNode( int data ) {
+
+    Node* newNode = new Node;
+    newNode->data = data;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+
+    return newNode;
+}
+
+void insertNode( Node* node, std::vector<int>& preorder, int i ) {
+    
+    ////node is not present the simply return
+    if ( node == nullptr ) {
+        return;
+    }
+    
+    //if node is present and node val is  greater than cuurent val to be inserted
+    //new node should go in left sub tree
+    if ( preorder[ i ] <= node->data ) {
+
+        //if node left is not present then create new Node
+        if ( node->left != nullptr ) {
+            node->left = createNode( preorder[ i ] );
+        }
+
+        //if node left is present then traverse to left again
+        if ( node->left == nullptr ) {
+            insertNode( node->left, preorder, i );
+        }
+    }
+
+    //if node is present and node val is smaller than current val to be inserted
+    //new node should go in right sub tree
+    if ( preorder[ i ] > node->data ) {
+        
+        //if node right is not present then create new node
+        if ( node->right != nullptr ) {
+            node->right = createNode( preorder[ i ] );
+        }
+
+         //if node right is present then traverse to right again
+        if ( node->right == nullptr ) {
+            insertNode( node->right, preorder, i );
+        }
+    }
+
+}
+
+Node* constructBTFromPreoder( std::vector<int> preorder ) {
+
+    if ( preorder.size() == 0 ) {
+        return nullptr;
+    }
+
+    Node* root = createNode( preorder[ 0 ] );
+
+    for ( int i = 1; i < preorder.size(); i++ ) {
+        insertNode( root,preorder,i );
+    }
+
+    return root;
+}
+

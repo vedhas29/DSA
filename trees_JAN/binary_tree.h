@@ -53,6 +53,8 @@ public:
 
     Node* searchInBST( Node* root, int key );
 
+    Node* constructBTFromPreoder( std::vector<int> preorder );
+
 private:
     int diameter = 0; //required for tree diameter
 
