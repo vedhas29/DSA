@@ -365,7 +365,7 @@ void insertNode( Node* node, std::vector<int>& preorder, int i ) {
 
 }
 
-Node* constructBTFromPreoder( std::vector<int> preorder ) {
+Node* Node::constructBTFromPreoder( std::vector<int> preorder ) {
 
     if ( preorder.size() == 0 ) {
         return nullptr;
@@ -380,3 +380,37 @@ Node* constructBTFromPreoder( std::vector<int> preorder ) {
     return root;
 }
 
+void inorderTraversal( Node* root, std::vector <Node*>& inorderElements ) {
+
+    if ( root == nullptr ) {
+        return;
+    }
+
+    inorderTraversal( root->left, inorderElements );
+
+    inorderElements.push_back( root );
+
+    inorderTraversal( root->right, inorderElements );
+}
+
+void Node::find_Predecessor_Successor( Node* root, int target ) {
+
+    std::vector <Node*> inorderElements;
+
+    inorderTraversal( root, inorderElements );
+
+    Node* predecessor = nullptr;
+    Node* successor = nullptr;
+
+    for ( int i = 0; i < inorderElements.size(); i++ ) {
+
+        if ( inorderElements[ i ]->data < target ) {
+            predecessor = inorderElements[ i ];
+        }
+
+        if ( inorderElements[ i ]-data > target ) {
+            successor = inorderElements[ i ];
+            break;
+        }
+    }
+}

@@ -55,6 +55,10 @@ public:
 
     Node* constructBTFromPreoder( std::vector<int> preorder );
 
+//Note:- In an inorder traversal the number just smaller than the target is
+//the predecessor and the number just greater than the target is the successor. 
+    void find_Predecessor_Successor( Node* root, int target );
+
 private:
     int diameter = 0; //required for tree diameter
 
