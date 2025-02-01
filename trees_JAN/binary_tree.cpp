@@ -374,7 +374,7 @@ Node* Node::constructBTFromPreoder( std::vector<int> preorder ) {
     Node* root = createNode( preorder[ 0 ] );
 
     for ( int i = 1; i < preorder.size(); i++ ) {
-        insertNode( root,preorder,i );
+        insertNode( root, preorder,i );
     }
 
     return root;
@@ -413,4 +413,50 @@ void Node::find_Predecessor_Successor( Node* root, int target ) {
             break;
         }
     }
+}
+
+Node::mNode* Node::connect( mNode* root ) {
+
+    if ( root == nullptr ) {
+        return nullptr;
+    }
+
+    std::vector <std::vector <mNode*>> treeElements;
+
+    std::queue <mNode*> q;
+    q.push( root );
+
+    while ( !q.empty()) {
+        std::vector <mNode*> currLevelElements;
+        int q_size = q.size();
+
+        for ( int i = 0; i < q_size; i++ ) {
+            mNode* node = q.front();
+            q.pop();
+
+            if ( node->left != nullptr ) {
+                q.push( node->left );
+            }
+
+            if ( node->right != nullptr ) {
+                q.push( node->right );
+            }
+
+            currLevelElements.push_back( node );
+        }
+        treeElements.push_back( currLevelElements );
+    }
+
+    for ( int i = 0; i < treeElements.size(); i++ ) {
+        for ( int j = 0; j < treeElements[ i ].size(); j++ ) {
+
+            if ( j == treeElements[ i ].size()-1 ) {
+                treeElements[ i ][ j ]->next = nullptr;
+            } else {
+                treeElements[ i ][ j ]->next = treeElements[ i ][ j+1 ];
+            }
+        }
+    }
+
+    return root;
 }

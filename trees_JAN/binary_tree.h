@@ -59,6 +59,15 @@ public:
 //the predecessor and the number just greater than the target is the successor. 
     void find_Predecessor_Successor( Node* root, int target );
 
+    //LC-116 Populating Next right pointers in each nodes
+    struct mNode {
+        int data;
+        mNode* left = nullptr;
+        mNode* right = nullptr;
+        mNode* next = nullptr;
+    };
+    mNode* connect( mNode* root );
+
 private:
     int diameter = 0; //required for tree diameter
 
