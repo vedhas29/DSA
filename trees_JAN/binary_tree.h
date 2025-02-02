@@ -68,6 +68,9 @@ public:
     };
     mNode* connect( mNode* root );
 
+    //LC-98 validate BST 
+    bool isValidBST( Node* root );
+
 private:
     int diameter = 0; //required for tree diameter
 

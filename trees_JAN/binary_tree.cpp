@@ -460,3 +460,34 @@ Node::mNode* Node::connect( mNode* root ) {
 
     return root;
 }
+
+void inorderTraversal( Node* root, std::vector <int>& inorderElements ) {
+
+    if ( root == nullptr ) {
+        return;
+    }
+
+    inorderTraversal( root->left, inorderElements );
+    inorderElements.push_back( root->data );
+    inorderTraversal( root->right, inorderElements );
+}
+
+bool Node::isValidBST( Node* root ) {
+
+    if ( root == nullptr ) {
+            return true;
+    }
+
+    std::vector <int> treeElements;
+
+    inorderTraversal( root, treeElements );
+
+    for ( int i = 0; i < treeElements.size()-1; i++ ) {
+
+        if ( !(treeElements[ i ] < treeElements[ i+1 ]) ) {
+            return false;
+        }
+    }
+
+    return true;
+}
