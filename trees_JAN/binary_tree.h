@@ -71,6 +71,10 @@ public:
     //LC-98 validate BST 
     bool isValidBST( Node* root );
 
+    //GFG Root to Leaf Path
+    void root2LeafPath( Node* root, std::vector<int>& pathElements, 
+                    std::vector<std::vector<int>>& treeElements );
+
 private:
     int diameter = 0; //required for tree diameter
 

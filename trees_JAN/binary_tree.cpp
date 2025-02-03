@@ -491,3 +491,26 @@ bool Node::isValidBST( Node* root ) {
 
     return true;
 }
+
+
+void Node::root2LeafPath( Node* root, std::vector<int>& root2LeafElements, 
+            std::vector <std::vector<int>>& treeElements ) {
+
+    if ( root == nullptr ) {
+        return;
+    }
+
+    root2LeafElements.push_back( root->data );
+
+    if ( root->left == nullptr && root->right == nullptr ) {
+        treeElements.push_back( root2LeafElements );
+        root2LeafElements.pop_back();
+        return;
+    }
+
+    root2LeafPath( root->left, root2LeafElements, treeElements );
+    root2LeafPath( root->right, root2LeafElements, treeElements );
+
+    root2LeafElements.pop_back();
+}
+
