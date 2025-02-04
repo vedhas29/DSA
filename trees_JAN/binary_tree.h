@@ -75,6 +75,9 @@ public:
     void root2LeafPath( Node* root, std::vector<int>& pathElements, 
                     std::vector<std::vector<int>>& treeElements );
 
+    //LC-230 Kth smallest element in BST
+    int kthSmallest( Node* root, int k );
+
 private:
     int diameter = 0; //required for tree diameter
 

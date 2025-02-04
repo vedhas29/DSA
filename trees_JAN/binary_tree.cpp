@@ -514,3 +514,11 @@ void Node::root2LeafPath( Node* root, std::vector<int>& root2LeafElements,
     root2LeafElements.pop_back();
 }
 
+int Node::kthSmallest( Node* root, int k ) {
+
+    std::vector <int> inorderElements;
+
+    inorderTraversal( root, inorderElements );
+
+    return inorderElements[ k-1 ];
+}
