@@ -6,8 +6,13 @@ Graph::Graph() {
     edges = 0;
 }
 
+void Graph::createGraph( int vertices ) {
+    graph.resize( vertices );
+}
 
 void Graph::addEdge( int from_vertex, int to_vertex ) {
+
+    std::cout << "adding edge" << std::endl;
 
     graph[ from_vertex ].push_back( to_vertex );
     graph[ to_vertex ].push_back( from_vertex );

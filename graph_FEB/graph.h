@@ -13,6 +13,8 @@ class Graph {
 public:
     Graph();
 
+    void createGraph( int vertices );
+
     void addEdge ( int from_vertex, int to_vertex );
 
     void printGraph();
