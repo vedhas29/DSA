@@ -19,6 +19,12 @@ public:
 
     void printGraph();
 
+    std::vector<std::vector<int>> getGraph();
+
+    void BFS( int source );
+
+    void printBFS();
+
 private:
     //outer vector represents number of vertices
     //inner vector represents number of edges
@@ -30,8 +36,10 @@ private:
     //3 - { 2 }
     std::vector <std::vector <int>> graph; 
 
+    std::vector <int> bfs;    //vector to hold the traversal
+
 };
 
 
 
-#endif //_GRAPH_
+#endif //_GRAPH;
