@@ -25,6 +25,18 @@ public:
 
     void printBFS();
 
+    /// @brief function having implementation of DFS
+    /// @param source 
+    /// @param dfsElements 
+    /// @param visited 
+    /// @param adj 
+    void DFS( int source, std::vector <int> dfsElements, 
+            std::vector <bool>& visited, std::vector<std::vector<int>>& adj );
+    
+    /// @brief function initializin the dfsElements, visited, source required
+    /// for DFS() implementation and calling DFS()
+    void dfsCaller();
+
 private:
     //outer vector represents number of vertices
     //inner vector represents number of edges

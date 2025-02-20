@@ -49,8 +49,8 @@ void Graph::BFS( int source ) {
 
         for ( auto it : graph[ node ] ) {
             if ( visited[ it ] == false ) {
-                visited[ it ] = true;
                 q.push( it );
+                visited[ it ] = true;
             }
         }
     }
@@ -67,4 +67,30 @@ void Graph::printBFS() {
 
 std::vector<std::vector<int>> Graph::getGraph() {
     return graph;
+}
+
+void Graph::dfsCaller() {
+    std::vector <int> dfsElements;
+    std::vector <bool> visited( graph.size(), false );
+
+    int source = 0; //assuming the start of traversal is 0
+
+    DFS( source, dfsElements, visited, graph );
+}
+
+void Graph::DFS( int node, std::vector <int> dfsElements, 
+        std::vector <bool>& visited, std::vector<std::vector<int>>& adj ) {
+    
+    //to mark whether vertex is visited or not
+    visited[ node ] = true;
+    
+    dfsElements.push_back( node );
+
+    //traverse the nodes in depth
+    for ( auto it : adj[ node ] ) {
+        if ( visited[ it ] == false ) {
+            visited[ it ] = true;
+            DFS( node, dfsElements, visited, adj );
+        }
+    }
 }
