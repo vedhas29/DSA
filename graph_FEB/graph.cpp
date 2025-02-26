@@ -94,3 +94,43 @@ void Graph::DFS( int node, std::vector <int> dfsElements,
         }
     }
 }
+
+int Graph::countNumberOfProvinces( std::vector<std::vector <int>> &adj, 
+            int vertex ) {
+    
+    //convert adj matrix to list
+    std::vector<std::vector <int>> adjList( vertex );
+    for ( int i = 0; i < adj.size(); i++ ) {
+        for ( int j = 0; j < adj.size(); j++ ) {
+
+            if ( adj[ i ][ j ] == 1 and i != j ) {
+                adjList[ i ].push_back( j );
+            }
+        }
+    }
+
+    std::vector <bool> visited ( vertex+1, false );
+    int number_of_provinces = 0;
+
+    for ( int i = 0; i < vertex; i++ ) {
+
+        if ( visited[ i ] == false ) {
+            dfsHelper( i, visited, adjList );
+            number_of_provinces += 1;
+        }
+    }
+    return number_of_provinces;
+}
+
+void Graph::dfsHelper( int node, std::vector <bool>& visited, 
+            std::vector<std::vector <int>>& adjList ) {
+    
+    visited[ node ] = true;
+
+    for ( auto it: adjList[ node ] ) {
+        if ( visited[ it ] == false ) {
+            visited[ it ] = true;
+            dfsHelper( it, visited, adjList );
+        }
+    }
+}

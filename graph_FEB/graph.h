@@ -37,6 +37,12 @@ public:
     /// for DFS() implementation and calling DFS()
     void dfsCaller();
 
+    int countNumberOfProvinces( std::vector<std::vector<int>> adj, int vertex );
+    
+    void dfsHelper( int node, std::vector <bool>& visited, 
+                std::vector<std::vector<int>>& adjList );
+
+
 private:
     //outer vector represents number of vertices
     //inner vector represents number of edges
@@ -54,4 +60,4 @@ private:
 
 
 
-#endif //_GRAPH;
+#endif //_GRAPH
